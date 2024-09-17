@@ -16,13 +16,21 @@ def merge_sort(array, return_array=[])
     # Assign variables to the left half and right half
     l = merge_sort(leftside)
     r = merge_sort(rightside)
-    # In the case where l is an array with more than one value, 
-    # take the minimum value from l and r, sort them, then return them.
-    
+    # In the case where l or r is an array with more than one value, 
+    # combine l and r, take the minimum value from l and r, 
+    # add it to temp_array, then return them.
+    if l.is_a?(Array) && r.is_a?(Array)
+      temp_array = l + r
+      temp_array.size.times do |num|
+        min = temp_array.min
+        return_array << min
+        temp_array.delete(min)
+      end
+    else
+      temp_array << l << r
+      temp_array.min==l ? return_array << l << r : return_array << r << l
+    end
 
-    temp_array << l << r
-    temp_array.min==l ? return_array << l << r : return_array << r << l
-    
     return return_array
     
   end
