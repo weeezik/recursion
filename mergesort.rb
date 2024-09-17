@@ -1,10 +1,10 @@
-# input1 = [3, 2, 1, 13, 8, 5, 0, 1]
+input1 = [3, 2, 1, 13, 8, 5, 0, 1]
 input2 = [105, 79, 100, 110]
 
 def merge_sort(array, return_array=[])
-  puts 'This was printed recursively'
   # Define the size of the given array as a variable.
   size = array.size
+
   # Base case: If an array has a size of zero, return the value in the array.
   if size == 1
     array[0]
@@ -16,7 +16,7 @@ def merge_sort(array, return_array=[])
     # Assign variables to the left half and right half
     l = merge_sort(leftside)
     r = merge_sort(rightside)
-    # In the case where l or r is an array with more than one value, 
+    # In the case where l and r are both an array, 
     # combine l and r, take the minimum value from l and r, 
     # add it to temp_array, then return them.
     if l.is_a?(Array) && r.is_a?(Array)
@@ -24,7 +24,7 @@ def merge_sort(array, return_array=[])
       temp_array.size.times do |num|
         min = temp_array.min
         return_array << min
-        temp_array.delete(min)
+        temp_array.delete_at(temp_array.index(min))
       end
     else
       temp_array << l << r
@@ -36,4 +36,5 @@ def merge_sort(array, return_array=[])
   end
 end
 
+p merge_sort(input1)
 p merge_sort(input2)
